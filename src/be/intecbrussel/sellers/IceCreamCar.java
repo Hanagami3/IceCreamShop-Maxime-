@@ -60,20 +60,24 @@ public class IceCreamCar implements IceCreamSeller{
 
     @Override
     public Magnum orderMagnum(Magnum.MagnumType type) {
-        if (prepareMagnum(type).isPresent())
+
+        if (prepareMagnum(type).isPresent()) {
+
             return prepareMagnum(type).get();
+        }
         else {
             System.out.println("NO MORE ICECREAM");
-            Magnum magnum = new Magnum();
-            return magnum;
+            return new Magnum();
         }
     }
     private Optional<Magnum> prepareMagnum(Magnum.MagnumType type){
+        stock.setMagni(stock.getMagni()-1);
         stock = new Stock();
         Magnum magnum ;
         if (stock.getMagni() > 0) {
             magnum = new Magnum(type);
             profit += priceList.getMagnumPrice(type) * 0.01;
+
             return Optional.of(magnum);
         }
         else {

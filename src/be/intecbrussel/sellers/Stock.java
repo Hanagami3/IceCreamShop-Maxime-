@@ -2,17 +2,17 @@ package be.intecbrussel.sellers;
 
 public class Stock {
 
-    int iceRockets;
-    int cones;
-    int balls;
-    int magni;
+    private int iceRockets;
+    private int cones;
+    private int balls;
+    private int magni;
 
     public Stock(){
-        iceRockets = 2;
-        magni = 0;
-        cones=2;
-        balls=2;
-
+        iceRockets = getIceRockets();
+        cones= 2;
+        balls= 2;
+        setMagni(2);
+        magni = getMagni();
     }
 
     public int getIceRockets() {

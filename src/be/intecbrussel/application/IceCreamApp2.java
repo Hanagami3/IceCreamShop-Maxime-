@@ -22,13 +22,21 @@ public class IceCreamApp2 {
         orders.add(iceCreamSeller.orderCone(Arrays.stream(Cone.Flavor.values())
                 .filter(f -> f.equals(Cone.Flavor.BANANA) || f.equals(Cone.Flavor.CHOCOLATE))
                 .toArray(Cone.Flavor[]::new)));*/
+        System.out.println(stock.getMagni());
         orders.add(iceCreamSeller.orderMagnum(Magnum.MagnumType.ROMANTICSTRAWBERRIES));
         orders.add(iceCreamSeller.orderMagnum(Magnum.MagnumType.BLACKCHOCOLATE));
 
-        for (int i = 0; i < orders.size(); i++)
-            orders.get(i).eat();
-
+        for (int i = 0; i < orders.size(); i++) {
+            if(stock.getMagni()>0)
+                orders.get(i).eat();
+        }
         System.out.println();
         System.out.println(iceCreamSeller.getProfit());
+        System.out.println(stock.getMagni());
+        stock.setMagni(stock.getMagni());
+        stock.setMagni(stock.getMagni());
+
+
+        System.out.println(stock.getMagni());
     }
 }

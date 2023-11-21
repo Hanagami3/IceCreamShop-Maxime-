@@ -29,6 +29,6 @@ public class IceCreamApp {
             orders.get(i).eat();
 
         System.out.println();
-        System.out.println(iceCreamSeller.getProfit().);
+        System.out.println(iceCreamSeller.getProfit());
     }
 }
