@@ -26,7 +26,6 @@ public class IceCreamApp {
         orders.add(iceCreamSeller.orderMagnum(Magnum.MagnumType.BLACKCHOCOLATE));
 
         for (int i = 0; i < orders.size(); i++)
-            if (orders.get(i).)
             orders.get(i).eat();
 
         System.out.println();
