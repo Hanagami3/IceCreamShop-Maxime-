@@ -8,19 +8,18 @@ public class Stock {
     private int magni;
 
     public Stock(){
-        iceRockets = getIceRockets();
-        cones= 2;
-        balls= 2;
-        setMagni(2);
-        magni = getMagni();
+        iceRockets = 3;
+        cones= 0;
+        balls= 1;
+        magni = 1;
     }
 
     public int getIceRockets() {
-        return iceRockets;
+            return iceRockets;
     }
 
     public void setIceRockets(int iceRockets) {
-        this.iceRockets = iceRockets;
+            this.iceRockets = iceRockets;
     }
 
     public int getCones() {
@@ -40,7 +39,7 @@ public class Stock {
     }
 
     public int getMagni() {
-        return magni;
+            return magni;
     }
 
     public void setMagni(int magni) {

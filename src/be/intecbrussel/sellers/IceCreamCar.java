@@ -21,17 +21,21 @@ public class IceCreamCar implements IceCreamSeller{
 
     @Override
     public Cone orderCone(Cone.Flavor[] balls) {
-
-        return prepareCone(balls);
+        if (prepareCone(balls) != null) {
+            profit += priceList.getBallPrice() * 0.25;
+            return prepareCone(balls);
+        }
+        else
+            return null;
     }
 
     private Cone prepareCone(Cone.Flavor[] balls){
-        stock = new Stock();
+        Stock stock = this.stock;
         Cone cone;
-        if (stock.getCones() > 0){
+        if (stock.getCones() > 0 || stock.getBalls() > 0){
             cone = new Cone(balls);
-            //for (int i = 0; i < balls.length; i++)
-            profit += priceList.getBallPrice() * 0.25;
+            for (int i = 0; i < balls.length; i++)
+                profit += priceList.getBallPrice() * 0.25;
             return cone;
         }
         else {
@@ -42,14 +46,18 @@ public class IceCreamCar implements IceCreamSeller{
 
     @Override
     public IceRocket orderIceRocket() {
-       return prepareIceRocket();
+        if (prepareIceRocket() != null) {
+            profit += priceList.getRocketPrice() * 0.2;
+            return prepareIceRocket();
+        }
+        else
+            return null;
     }
     private IceRocket prepareIceRocket(){
-        stock = new Stock();
-        IceRocket iceRocket;
+        Stock stock = this.stock;
+        IceRocket iceRocket ;
         if (stock.getIceRockets() > 0) {
             iceRocket = new IceRocket();
-            profit += priceList.getRocketPrice() * 0.2;
             return iceRocket;
         }
         else {
@@ -61,27 +69,23 @@ public class IceCreamCar implements IceCreamSeller{
     @Override
     public Magnum orderMagnum(Magnum.MagnumType type) {
 
-        if (prepareMagnum(type).isPresent()) {
-
-            return prepareMagnum(type).get();
+        if (prepareMagnum(type) != null) {
+            profit += priceList.getMagnumPrice(type) * 0.01;
+            return prepareMagnum(type);
         }
-        else {
-            System.out.println("NO MORE ICECREAM");
-            return new Magnum();
-        }
+        else
+            return null;
     }
-    private Optional<Magnum> prepareMagnum(Magnum.MagnumType type){
-        stock.setMagni(stock.getMagni()-1);
-        stock = new Stock();
+    private Magnum prepareMagnum(Magnum.MagnumType type){
+        Stock stock = this.stock;
         Magnum magnum ;
         if (stock.getMagni() > 0) {
             magnum = new Magnum(type);
-            profit += priceList.getMagnumPrice(type) * 0.01;
-
-            return Optional.of(magnum);
+            return magnum;
         }
         else {
-            return Optional.empty();
+            System.out.println("NO MORE ICECREAM");
+            return null;
         }
     }
 
