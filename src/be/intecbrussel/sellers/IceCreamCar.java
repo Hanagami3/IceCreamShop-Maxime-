@@ -22,7 +22,12 @@ public class IceCreamCar implements IceCreamSeller{
     @Override
     public Cone orderCone(Cone.Flavor[] balls) {
         if (prepareCone(balls) != null) {
-            profit += priceList.getBallPrice() * 0.25;
+            if (stock.getCones() > 0 || stock.getBalls() > balls.length)
+                for (int i = 0; i < balls.length; i++) {
+                    profit += priceList.getBallPrice() * 0.25;
+                }
+            stock.setCones(stock.getCones()-1);
+            stock.setBalls(stock.getBalls()-balls.length);
             return prepareCone(balls);
         }
         else
@@ -30,16 +35,15 @@ public class IceCreamCar implements IceCreamSeller{
     }
 
     private Cone prepareCone(Cone.Flavor[] balls){
+
         Stock stock = this.stock;
         Cone cone;
-        if (stock.getCones() > 0 || stock.getBalls() > 0){
+        if (stock.getCones() > -1 && stock.getBalls() > - 1){
             cone = new Cone(balls);
-            for (int i = 0; i < balls.length; i++)
-                profit += priceList.getBallPrice() * 0.25;
             return cone;
         }
         else {
-            System.out.println("NO MORE ICECREAM");
+            System.out.println("NO MORE CONE");
             return null;
         }
     }
@@ -47,7 +51,9 @@ public class IceCreamCar implements IceCreamSeller{
     @Override
     public IceRocket orderIceRocket() {
         if (prepareIceRocket() != null) {
-            profit += priceList.getRocketPrice() * 0.2;
+            if (stock.getIceRockets() > 0)
+                profit += priceList.getRocketPrice() * 0.2;
+            stock.setIceRockets(stock.getIceRockets()-1);
             return prepareIceRocket();
         }
         else
@@ -56,12 +62,12 @@ public class IceCreamCar implements IceCreamSeller{
     private IceRocket prepareIceRocket(){
         Stock stock = this.stock;
         IceRocket iceRocket ;
-        if (stock.getIceRockets() > 0) {
+        if (stock.getIceRockets() > -1) {
             iceRocket = new IceRocket();
             return iceRocket;
         }
         else {
-            System.out.println("NO MORE ICECREAM");
+            System.out.println("NO MORE ICE ROCKET");
             return null;
         }
     }
@@ -70,7 +76,9 @@ public class IceCreamCar implements IceCreamSeller{
     public Magnum orderMagnum(Magnum.MagnumType type) {
 
         if (prepareMagnum(type) != null) {
-            profit += priceList.getMagnumPrice(type) * 0.01;
+            if (stock.getMagni() > 0)
+                profit += priceList.getMagnumPrice(type) * 0.01;
+            stock.setMagni(stock.getMagni()-1);
             return prepareMagnum(type);
         }
         else
@@ -79,18 +87,19 @@ public class IceCreamCar implements IceCreamSeller{
     private Magnum prepareMagnum(Magnum.MagnumType type){
         Stock stock = this.stock;
         Magnum magnum ;
-        if (stock.getMagni() > 0) {
+        if (stock.getMagni() > -1) {
+
             magnum = new Magnum(type);
             return magnum;
         }
         else {
-            System.out.println("NO MORE ICECREAM");
+            System.out.println("NO MORE MAGNUM");
             return null;
         }
     }
 
     @Override
     public double getProfit() {
-        return profit;
+        return profit = Math.round(profit*100.0)/100.0;
     }
 }

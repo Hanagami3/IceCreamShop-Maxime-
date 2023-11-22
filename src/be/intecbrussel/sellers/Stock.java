@@ -8,10 +8,10 @@ public class Stock {
     private int magni;
 
     public Stock(){
-        iceRockets = 3;
-        cones= 0;
-        balls= 1;
-        magni = 1;
+        iceRockets = 2;
+        cones= 3;
+        balls=7;
+        magni = 5;
     }
 
     public int getIceRockets() {

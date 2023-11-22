@@ -28,7 +28,7 @@ public class Magnum implements Eatable {
 
     @Override
     public void eat() {
-        System.out.println("Je eet " + type + " magnum");
+        System.out.println("Een klant heeft een " + type.toString().toLowerCase() + " magnum gegeten");
     }
 
 }

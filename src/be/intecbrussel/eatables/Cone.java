@@ -25,13 +25,11 @@ public class Cone implements Eatable {
         this.balls = balls;
 
     }
-
-
     @Override
     public void eat() {
-        System.out.println("je eet een cone met " + balls.length + " balls met de flavor van: ");
+        System.out.println("Een klant heeft een hoorntje gegeten met " + balls.length + " ijsballen met de smaken van: ");
         for (Flavor ball : balls)
-            System.out.println(ball.toString().toLowerCase());
+            System.out.println("  - " +ball.toString().toLowerCase());
     }
 
 }

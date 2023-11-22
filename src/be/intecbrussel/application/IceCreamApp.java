@@ -19,16 +19,32 @@ public class IceCreamApp {
         ArrayList<Eatable> orders = new ArrayList<>();
 
         orders.add(iceCreamSeller.orderIceRocket());
+        orders.add(iceCreamSeller.orderIceRocket());
+        orders.add(iceCreamSeller.orderIceRocket());
+
         orders.add(iceCreamSeller.orderCone(Arrays.stream(Cone.Flavor.values())
-                .filter(f -> f.equals(Cone.Flavor.BANANA) || f.equals(Cone.Flavor.CHOCOLATE))
+                .filter(f -> f.equals(Cone.Flavor.PISTACHE) || f.equals(Cone.Flavor.STRACIATELLA))
                 .toArray(Cone.Flavor[]::new)));
+        orders.add(iceCreamSeller.orderCone(Arrays.stream(Cone.Flavor.values())
+                .filter(f -> f.equals(Cone.Flavor.BANANA) || f.equals(Cone.Flavor.CHOCOLATE) || f.equals((Cone.Flavor.LEMON)))
+                .toArray(Cone.Flavor[]::new)));
+        orders.add(iceCreamSeller.orderCone(Arrays.stream(Cone.Flavor.values())
+                .filter(f -> f.equals(Cone.Flavor.CHOCOLATE) || f.equals(Cone.Flavor.VANILLA))
+                .toArray(Cone.Flavor[]::new)));
+
         orders.add(iceCreamSeller.orderMagnum(Magnum.MagnumType.ROMANTICSTRAWBERRIES));
         orders.add(iceCreamSeller.orderMagnum(Magnum.MagnumType.BLACKCHOCOLATE));
 
-        for (int i = 0; i < orders.size(); i++)
-            orders.get(i).eat();
-
         System.out.println();
-        System.out.println(iceCreamSeller.getProfit());
+        System.out.println("De bestellingen die de klanten heb gegeten");
+
+        for (int i = 0; i < orders.size(); i++) {
+            if (orders.get(i) != null) {
+                System.out.print((i + 1) + ". ");
+                orders.get(i).eat();
+            }
+        }
+        System.out.println();
+        System.out.println("Je heeft " + orders.size() +" bestellingen gehad met een voordeel van " + iceCreamSeller.getProfit() + " euros");
     }
 }

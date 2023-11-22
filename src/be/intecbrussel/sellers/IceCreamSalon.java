@@ -17,7 +17,7 @@ public class IceCreamSalon implements IceCreamSeller{
     @Override
     public double getProfit() {
 
-        return totalProfit;
+        return Math.round(totalProfit*100.0)/100.0;
     }
 
     @Override
